@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import cart from './modules/cart';
 import products from './modules/products';
+import test from './modules/test';
 
 Vue.use(Vuex);
 
@@ -9,6 +10,7 @@ Vue.use(Vuex);
 interface State {
   cart: typeof cart.state;
   products: typeof products.state;
+  test: typeof test.state
 }
 // 将 getter 函数转换成 {getterName: getterFuncsReturnType} 的对象类型
 export type ReturnGetters<T extends { [key: string]: (...args: any) => any }> = {
@@ -16,18 +18,18 @@ export type ReturnGetters<T extends { [key: string]: (...args: any) => any }> = 
 };
 
 // 提取所有 module 的 getter 函数类型对象
-type GettersFuncs = typeof cart.getters & typeof products.getters;
+type GettersFuncs = typeof cart.getters & typeof products.getters & typeof test.getters;
 // 将 getter 转换成对象
 type Getters = ReturnGetters<GettersFuncs>;
 
 // 提取 mutation 函数类型
-type CommitFuncs = typeof cart.mutations & typeof products.mutations;
+type CommitFuncs = typeof cart.mutations & typeof products.mutations & typeof test.mutations;
 // 将 mutation 函数名及 payload 类型转换成 commit 函数的两个入参类型
 interface Commit {
   <T extends keyof CommitFuncs>(type: T, payload?: Parameters<CommitFuncs[T]>[1]): void;
 }
 // dispatch 处理步骤同 commit
-type DispatchFuncs = typeof cart.actions & typeof products.actions;
+type DispatchFuncs = typeof cart.actions & typeof products.actions & typeof test.actions;
 interface Dispatch {
   <T extends keyof DispatchFuncs>(type: T, payload?: Parameters<DispatchFuncs[T]>[1]): Promise<any>;
 }
@@ -35,7 +37,8 @@ interface Dispatch {
 const store = new Vuex.Store({
   modules: {
     cart,
-    products
+    products,
+    test
   }
 });
 

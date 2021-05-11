@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { dispatch, Product, state } from '@/store';
+import { commit, dispatch, Product, state } from '@/store';
 
 export default Vue.extend({
   computed: {
@@ -22,6 +22,8 @@ export default Vue.extend({
   },
   methods: {
     addProductToCart (product: Product) {
+      commit('setFoo', [3]);
+      console.log(this.$$store.state.test.foo, 'test foo');
       dispatch('addProductToCart', product);
     }
   },

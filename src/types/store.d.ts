@@ -1,7 +1,7 @@
 import { Store as s } from '../store/index';
 
 export { ReturnGetters } from '../store/index';
-export interface Store extends s {}
+export type Store = s
 export interface ActionContext<S, G> {
   dispatch: Store['dispatch']; // 全局的 dispatch, 有 ts 提示支持
   commit: Store['commit']; // 全局的 commit, 有 ts 提示支持
