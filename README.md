@@ -22,3 +22,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### vuex reference
+See [vuex ts](https://github.com/BarneyZhao/vuex-typescript-demo)
